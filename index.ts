@@ -2,13 +2,6 @@ import chalk from 'chalk';
 
 const fs = require('fs');
 
-// async function funcaoAsync(){
-//     const resultado = await obterArquivo('assets/texto1.md');
-//     console.log(typeof(resultado));
-// }
-// console.log(funcaoAsync()); //resolver problema de retorno assíncrono.
-
-let arquivo: string = '';
 
 obterArquivo('assets/texto1.md').then((resposta) => {
    let resultados: object[] = extrairLinks(resposta);
@@ -44,15 +37,3 @@ function extrairLinks(texto: string): object[]{
     }
     return arrayResultados;
 }
-
-
-
-// function obterArquivo(caminhoDoArquivo: string){
-//     const encoding: string = 'UTF-8';
-//     fs.readFile(caminhoDoArquivo, encoding, (erro, texto) => {
-//         if(erro){
-//             tratarErro(erro);
-//         }
-//         console.log(chalk.green(texto))
-//     });
-// }
