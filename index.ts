@@ -1,12 +1,20 @@
 import chalk from 'chalk';
+import * as url from "url";
+const validaUrls = require('./validadorDeUrls')
+const verificaStatus = require('./validadorDeUrls')
 
 const fs = require('fs');
 
-
 obterArquivo('assets/texto1.md').then((resposta) => {
    let resultados: object[] = extrairLinks(resposta);
-   console.log(resultados);
+   const urls: string = validaUrls(resultados);
+   console.log(urls); //Até aqui, tudo certo.
+   // verificaStatus(urls).then((resp: unknown) => {
+   //      console.log(resp);
+   // });
 });
+
+
 
 
 async function obterArquivo(caminhoDoArquivo: string): Promise<string> { //O "async" diz para o TS que o resultado dessa função será obtido de forma assíncrona.

@@ -4,16 +4,16 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 const chalk_1 = __importDefault(require("chalk"));
+const validaUrls = require('./validadorDeUrls');
+const verificaStatus = require('./validadorDeUrls');
 const fs = require('fs');
-// async function funcaoAsync(){
-//     const resultado = await obterArquivo('assets/texto1.md');
-//     console.log(typeof(resultado));
-// }
-// console.log(funcaoAsync()); //resolver problema de retorno assíncrono.
-let arquivo = '';
 obterArquivo('assets/texto1.md').then((resposta) => {
     let resultados = extrairLinks(resposta);
-    console.log(resultados);
+    const urls = validaUrls(resultados); //Até aqui, tudo certo.
+    console.log(urls);
+    // verificaStatus(urls).then((resp: unknown) => {
+    //      console.log(resp);
+    // });
 });
 async function obterArquivo(caminhoDoArquivo) {
     try {
@@ -41,12 +41,3 @@ function extrairLinks(texto) {
     }
     return arrayResultados;
 }
-// function obterArquivo(caminhoDoArquivo: string){
-//     const encoding: string = 'UTF-8';
-//     fs.readFile(caminhoDoArquivo, encoding, (erro, texto) => {
-//         if(erro){
-//             tratarErro(erro);
-//         }
-//         console.log(chalk.green(texto))
-//     });
-// }
